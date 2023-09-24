@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.Objects;
 
 public class Card {
@@ -5,16 +6,27 @@ public class Card {
     private String suit;
     private String symbol;
     private Integer value;
+    static String [] representation;
+
 
     public Card() {
+        this.representation  = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
     }
 
     public Card(Integer value, String suit) {
         this.suit = suit;
         this.value = value;
+        this.representation  = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
     }
 
     public Card(String suit , String symbol, Integer value) {
+        this.suit = suit;
+        this.symbol = symbol;
+        this.value= value;
+        this.representation  = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+    }
+
+    public Card(Integer value, String suit, String symbol) {
         this.suit = suit;
         this.symbol = symbol;
         this.value= value;
@@ -44,6 +56,10 @@ public class Card {
         this.value = value;
     }
 
+    public String[] getRepresentation() {
+        return representation;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,7 +76,7 @@ public class Card {
     @Override
     public String toString() {
         return  "|" +
-                value +
+                 symbol +
                  suit +
                 "|";
 
