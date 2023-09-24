@@ -29,12 +29,11 @@ public class Application {
             }
 
         }
+        System.out.println("Un-shuffled: ");
         for (Card[] c: fullPackOrdered
         ) {
             System.out.println(Arrays.deepToString(c));
         }
-        System.out.println(" ");
-        System.out.println("Pack: " + Arrays.deepToString(fullPackOrdered));
     }
 
 }
