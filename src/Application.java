@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Application {
 
-//   static String suit = null;
+//    static String suit = null;
     static String[] suits = {" \u2665", " \u2660", " \u2666", " \u2663"};
 
     static Integer value = 0;
