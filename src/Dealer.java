@@ -2,85 +2,58 @@ import java.util.Arrays;
 
 public class Dealer {
 
-    private String[] suits = {" \u2665", " \u2660", " \u2666", " \u2663"};
-    private String [] representation  = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 
-    private Integer value = 0;
-
+    private Integer cardValue = 0;
     private Card[] suitOfThirteen = new Card[13];
-    private Card[][] fullPackUnShuffled = new Card[4][13];
-
+    private Card[][] fiftyTwoUnShuffled = new Card[4][13];
+    private String[] suitSymbol = {"♥", "♠", "♦", "♣"};
+    private String[] valueRepresentation = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 
 
     public static void main(String[] args) {
         Dealer dealer = new Dealer();
-        dealer.getUnShuffledCards();
-        dealer.show();
+        dealer.getNewPack();
+        dealer.showPack();
+        System.out.println("[] ");
+        dealer.showSuitOf("♦");
+
     }
 
-
-    public Card[][] getUnShuffledCards() {
-        for (int j = 0; j < suits.length; j++) {
-            String suit = suits[j];
+    public Card[][] getNewPack() {
+        for (int j = 0; j < suitSymbol.length; j++) {
+            String suit = suitSymbol[j];//assigning string variable for suit from class level suit array.
             for (int i = 0; i < 13; i++) {
-                value = (i + 1) + 1;
-                System.out.println();
-                   Card card = new Card(value, suit, representation[i]);
-                suitOfThirteen[i] = card;
-                    fullPackUnShuffled[j][i] = card;
+                cardValue = (i + 1) + 1;  //Adjusting value because lowest end card begins with the number 2.
+                Card card = new Card(cardValue, suit, valueRepresentation[i]); //instantiating a new card for 13 cards in a suit
+                fiftyTwoUnShuffled[j][i] = card; //best of my knowledge I am assigning same card to double array?
             }
         }
-        return fullPackUnShuffled;
+        return fiftyTwoUnShuffled;
     }
 
-    public void show(){
-        System.out.println("Un-shuffled: ");
-        for (Card[] c: fullPackUnShuffled
-        ) {
+    public void showPack() {
+        for (Card[] c: this.fiftyTwoUnShuffled) {
             System.out.println(Arrays.deepToString(c));
         }
     }
 
-
-    public String[] getSuits() {
-        return suits;
-    }
-
-    public void setSuits(String[] suits) {
-        this.suits = suits;
-    }
-
-    public String[] getRepresentation() {
-        return representation;
-    }
-
-    public void setRepresentation(String[] representation) {
-        this.representation = representation;
-    }
-
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-
-    public Card[] getSuitOfThirteen() {
-        return suitOfThirteen;
-    }
-
-    public void setSuitOfThirteen(Card[] suitOfThirteen) {
-        this.suitOfThirteen = suitOfThirteen;
-    }
-
-    public Card[][] getFullPackUnShuffled() {
-        return fullPackUnShuffled;
-    }
-
-    public void setFullPackUnShuffled(Card[][] fullPackUnShuffled) {
-        this.fullPackUnShuffled = fullPackUnShuffled;
+    public void showSuitOf(String suit) {
+        for (int i = 0; i < this.fiftyTwoUnShuffled.length; i++) {
+            for(int j = 0; j < this.fiftyTwoUnShuffled[0].length; j++){
+                if(this.fiftyTwoUnShuffled[i][j].getSuitRepresentation().equals(suit)) {
+                    System.out.print(this.fiftyTwoUnShuffled[i][j]);
+                }
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
 
 

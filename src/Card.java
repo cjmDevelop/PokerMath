@@ -1,51 +1,43 @@
-import java.sql.Array;
 import java.util.Objects;
 
 public class Card {
 
-    private String suit;
-    private String symbol;
+    private String suitRepresentation;
+    private String valueRepresentation;
     private Integer value;
-    static String [] representation;
 
 
     public Card() {
-        this.representation  = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
     }
 
-    public Card(Integer value, String suit) {
-        this.suit = suit;
+    public Card(Integer value, String suitRepresentation) {
+        this.suitRepresentation = suitRepresentation;
         this.value = value;
-        this.representation  = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
     }
 
-    public Card(String suit , String symbol, Integer value) {
-        this.suit = suit;
-        this.symbol = symbol;
-        this.value= value;
-        this.representation  = new String[]{"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-    }
-
-    public Card(Integer value, String suit, String symbol) {
-        this.suit = suit;
-        this.symbol = symbol;
+    public Card(String suitRepresentation, String valueRepresentation, Integer value) {
+        this.suitRepresentation = suitRepresentation;
+        this.valueRepresentation = valueRepresentation;
         this.value= value;
     }
 
-    public String getSuit() {
-        return suit;
+    public Card(Integer value, String suitRepresentation, String valueRepresentation) {
+        this.suitRepresentation = suitRepresentation;
+        this.valueRepresentation = valueRepresentation;
+        this.value= value;
     }
 
-    public void setSuit(String suit) {
-        this.suit = suit;
+    public String getSuitRepresentation() {
+        return suitRepresentation;
     }
 
-    public String getSymbol() {
-        return symbol;
+    public void setSuitRepresentation(String suitRepresentation) {
+        this.suitRepresentation = suitRepresentation;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
+
+    public void setValueRepresentation(String valueRepresentation) {
+        this.valueRepresentation = valueRepresentation;
     }
 
     public Integer getValue() {
@@ -56,8 +48,8 @@ public class Card {
         this.value = value;
     }
 
-    public String[] getRepresentation() {
-        return representation;
+    public String getValueRepresentation() {
+        return valueRepresentation;
     }
 
     @Override
@@ -65,20 +57,23 @@ public class Card {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return Objects.equals(suit, card.suit) && Objects.equals(symbol, card.symbol) && Objects.equals(value, card.value);
+        return Objects.equals(suitRepresentation, card.suitRepresentation) && Objects.equals(valueRepresentation, card.valueRepresentation) && Objects.equals(value, card.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(suit, symbol, value);
+        return Objects.hash(suitRepresentation, valueRepresentation, value);
     }
+
 
     @Override
     public String toString() {
-        return  "|" +
-                 symbol +
-                 suit +
-                "|";
+//    String adjustRepresentation = valueRepresentation.length() == 1 ? " " + valueRepresentation : valueRepresentation;
 
+        return "|" +
+                valueRepresentation + " " +
+                suitRepresentation +
+                " | ";
     }
+
 }
