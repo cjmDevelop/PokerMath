@@ -8,15 +8,17 @@ public class Dealer {
     private Card[][] fiftyTwoUnShuffled = new Card[4][13];
     private String[] suitSymbol = {"♥", "♠", "♦", "♣"};
     private String[] valueRepresentation = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-
+    private String hearts = "\"♥\"";
+    private String spades =   "♠";
+    private String diamonds = "♦";
+    private String clubs = "♣";
 
     public static void main(String[] args) {
         Dealer dealer = new Dealer();
         dealer.getNewPack();
         dealer.showPack();
         System.out.println("[] ");
-        dealer.showSuitOf("♦");
-
+        dealer.showSuitOf(dealer.getClubs());
     }
 
     public Card[][] getNewPack() {
@@ -45,6 +47,22 @@ public class Dealer {
                 }
             }
         }
+    }
+
+    public String getHearts() {
+        return hearts;
+    }
+
+    public String getSpades() {
+        return spades;
+    }
+
+    public String getDiamonds() {
+        return diamonds;
+    }
+
+    public String getClubs() {
+        return clubs;
     }
 }
 
