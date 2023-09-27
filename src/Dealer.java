@@ -8,7 +8,7 @@ public class Dealer {
     private Card[][] fiftyTwoUnShuffled = new Card[4][13];
     private String[] suitSymbol = {"♥", "♠", "♦", "♣"};
     private String[] valueRepresentation = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
-    private String hearts = "\"♥\"";
+    private String hearts = "♥";
     private String spades =   "♠";
     private String diamonds = "♦";
     private String clubs = "♣";
@@ -16,18 +16,16 @@ public class Dealer {
     public static void main(String[] args) {
         Dealer dealer = new Dealer();
         dealer.getNewPack();
-        dealer.showPack();
-        System.out.println("[] ");
-        dealer.showSuitOf(dealer.getClubs());
+        dealer.showSuitOf(dealer.getDiamonds());
     }
 
     public Card[][] getNewPack() {
         for (int j = 0; j < suitSymbol.length; j++) {
-            String suit = suitSymbol[j];//assigning string variable for suit from class level suit array.
+            String suit = suitSymbol[j];
             for (int i = 0; i < 13; i++) {
-                cardValue = (i + 1) + 1;  //Adjusting value because lowest end card begins with the number 2.
-                Card card = new Card(cardValue, suit, valueRepresentation[i]); //instantiating a new card for 13 cards in a suit
-                fiftyTwoUnShuffled[j][i] = card; //best of my knowledge I am assigning same card to double array?
+                cardValue = (i + 1) + 1;
+                Card card = new Card(cardValue, suit, valueRepresentation[i]);
+                fiftyTwoUnShuffled[j][i] = card;
             }
         }
         return fiftyTwoUnShuffled;
