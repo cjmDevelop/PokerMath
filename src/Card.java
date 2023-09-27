@@ -2,7 +2,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Card {
-/* Card State -------------------------------------------------------------------------------------*/
+
+    /* Card State -------------------------------------------------------------------------------------*/
     private Random random = new Random();
     private String[] suitRepresentation;
 
@@ -17,36 +18,86 @@ public class Card {
 
     public static void main(String[] args) {
         Card card = new Card();
-        System.out.println(Arrays.toString(card.randomizeRepresentation(card)));
+        String[] suits = card.randomizeRepresentation(card);
+        card.seeRandomRepresentations(suits);
+
     }
 
 
-/* Card Behavior  ---------------------------------------------------------------------------------------------------*/
-    /** setRandomSuiteRepresentation(Card card)
+    /* Card Behavior  ---------------------------------------------------------------------------------------------------*/
+
+    /**
+     * setRandomSuiteRepresentation(Card card)
      * Randomizes card suits; using The Fisher-Yates
      * shuffle algorithm. Time-complexity of O(n),
      * space-complexity of O(1).
-     */ public String[] randomizeRepresentation(Card card) {
-       String[] suitStamped = {
-               card.getClubs(),
-               getDiamonds(),
-               getHearts(),
-               getSpades()
-       };
-       setSuitRepresentation(suitStamped); //Initialized suit
+     */
+    public String[] randomizeRepresentation(Card card) {
+        String[] suitStamped = {
+                card.getClubs(),
+                getDiamonds(),
+                getHearts(),
+                getSpades()
+        };
+        setSuitRepresentation(suitStamped);
 
-       for (int i = getSuitRepresentation().length - 1; i >= 0; i--) { // 1.) Descending Order.
-           int randomIndex = random.nextInt(i + 1); // 2.) Generate random number 0 - i inclusive.
-           String randomSuit = getSuitRepresentation()[randomIndex]; // 3.) get String based on random index.
-           getSuitRepresentation()[randomIndex] = getSuitRepresentation()[i]; // 4. swapped random string to ith index.
-           getSuitRepresentation()[i] = randomSuit;// 5.) Place the suit that was originally at the ith position at the random index.
-       }
+        for (int i = getSuitRepresentation().length - 1; i >= 0; i--) {
+            int randomIndex = random.nextInt(i + 1);
+            String randomSuit = getSuitRepresentation()[randomIndex];
+            getSuitRepresentation()[randomIndex] = getSuitRepresentation()[i];
+            getSuitRepresentation()[i] = randomSuit;
+        }
         return suitRepresentation;
+    }
+
+    void seeRandomRepresentations(String[] suits) {
+        for (String suit : suits) {
+            System.out.print("                 " + " | " + suit + " | ");
+            try {
+                Thread.sleep(750);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        present();
+    }
+
+
+     void present() {
+         int dial = 2;
+         System.out.println(" ");
+         String[] presentedBy = {"cjmDevelops", "TEXAS HOLD'EM", "POKER MATH"};
+         for(String s : presentedBy){
+             if(s.equals("cjmDevelops")) {
+              System.out.print("                                                    " + s + "\n");
+                 try {
+                     Thread.sleep(553 * dial);
+                     dial++;
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+             }
+             else if(s.equals("TEXAS HOLD'EM")) {
+                 System.out.print("                                                   " + s + "\n");
+                 try {
+                     Thread.sleep(553 * dial);
+                     dial++;
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+             }else {
+                 System.out.print("                                                     " + s + "\n");
+                 try {
+                     Thread.sleep(553 * dial);
+                     dial++;
+                 } catch (Exception e) {
+                     e.printStackTrace();
+                 }
+             }
+
+         }
      }
 
-    public void setSuitRepresentation(String[] suitRepresentation) {
-        this.suitRepresentation = suitRepresentation;
-    }
 
     /* Card Boiler-Plate-Code - getters & setters --------------------------------------------------------------------------------*/
     public Suit getSuit() {
@@ -83,7 +134,9 @@ public class Card {
         return suitRepresentation;
     }
 
-
+    public void setSuitRepresentation(String[] suitRepresentation) {
+        this.suitRepresentation = suitRepresentation;
+    }
 
     public Integer getNumericValueController() {
         return numericValueController;
@@ -101,7 +154,6 @@ public class Card {
     public void setValueRepresentation(String[] valueRepresentation) {
         this.valueRepresentation = valueRepresentation;
     }
-
 
 
 }
